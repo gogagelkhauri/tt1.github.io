@@ -1,0 +1,535 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="Shortcut Icon" href="https://ecommerce.ufc.ge/ecomm2/images/tbc_template/favicon.ico">
+    <link rel="stylesheet" href="./111_files/stylesheet_v2.css">
+    <title>TBC BANK</title>
+    <script type="text/javascript">
+<!--
+var validation_skip_card_expiry = false;strLocale_loc = new Object();
+if (typeof(window['strLocale']) != 'undefined') {
+  strLocale_loc = strLocale;
+} else {
+strLocale_loc.enter_cvc = 'Enter CVC2/CVV2 or CID code';
+strLocale_loc.enter_cid = 'Enter Amex CID code';
+strLocale_loc.enter_cvc2 = 'Enter CVC2/CVV2 code';
+strLocale_loc.enter_cvn2 = 'Enter CVN2 code';
+strLocale_loc.enter_pin = 'Enter PIN code';
+strLocale_loc.enter_name = 'Enter name, surname';
+strLocale_loc.enter_cardnr = 'Enter card number';
+strLocale_loc.enter_expiry = 'Enter card expiry date';
+strLocale_loc.invalid_exp = 'Card is expired';
+strLocale_loc.cvc2_label = 'CVC2/CVV2';
+strLocale_loc.cvn2_label = 'CVN2';
+strLocale_loc.pin_label = 'PIN';
+}
+function hideElements(selector) {
+    var elements = document.querySelectorAll(selector);
+
+    for (var i = 0; i < elements.length; i++) {
+        if ((' ' + elements[i].className + ' ').indexOf('hidden') === -1) {
+            elements[i].className += ' hidden'
+        }
+    }
+}
+function showElements(selector) {
+    var elements = document.querySelectorAll(selector);
+
+    for(var i = 0; i < elements.length; i++) {
+        elements[i].className = elements[i].className.replace(/(^| )hidden($| )/g, ' ');
+    }
+}
+
+function disableAndHideInputs(selector) {
+    hideElements(selector);
+
+    var inputs = document.querySelectorAll(selector + ' input');
+    for (var i in inputs) {
+        inputs[i].disabled = true;
+    }
+}
+function enableAndShowInputs(selector) {
+    showElements(selector);
+
+    var inputs = document.querySelectorAll(selector + ' input')
+    for (var i in inputs) {
+        inputs[i].disabled = false;
+    }
+}
+
+function findSubmitButton(form) {
+    var buttons = form.querySelectorAll('input,button');
+
+    for (i = 0; i < buttons.length; i++) {
+        if (buttons[i].type.toLowerCase() === 'submit') {
+            return buttons[i];
+        }
+    }
+}
+
+function goToErrorPage(baseUrl, message, transId) {
+    window.location.href = baseUrl + '/ClientHandler'
+        + '?error=true'
+        + '&error_msg=' + encodeURIComponent(message)
+        + '&trans_id=' + encodeURIComponent(transId);
+}
+function goToCancelPage(baseUrl, transId) {
+    window.location.href = baseUrl + '/ClientHandler'
+        + '?cancel=true'
+        + '&trans_id=' + encodeURIComponent(transId);
+}
+
+function isNumeric(value) {
+    return value.match(/^[0-9]*$/g) !== null;
+}
+
+function cardIsExpired(month, year) {
+    if(validation_skip_card_expiry){
+        return false;
+    }
+    now = new Date();
+    year = now.getFullYear().toString().substr(0, 2) + year;
+    expiry = new Date(year, month);
+    return expiry < now;
+}
+
+!function(e,n){"object"==typeof exports&&"undefined"!=typeof module?n():"function"==typeof define&&define.amd?define(n):n()}(0,function(){"use strict";function e(e){var n=this.constructor;return this.then(function(t){return n.resolve(e()).then(function(){return t})},function(t){return n.resolve(e()).then(function(){return n.reject(t)})})}function n(){}function t(e){if(!(this instanceof t))throw new TypeError("Promises must be constructed via new");if("function"!=typeof e)throw new TypeError("not a function");this._state=0,this._handled=!1,this._value=undefined,this._deferreds=[],u(e,this)}function o(e,n){for(;3===e._state;)e=e._value;0!==e._state?(e._handled=!0,t._immediateFn(function(){var t=1===e._state?n.onFulfilled:n.onRejected;if(null!==t){var o;try{o=t(e._value)}catch(f){return void i(n.promise,f)}r(n.promise,o)}else(1===e._state?r:i)(n.promise,e._value)})):e._deferreds.push(n)}function r(e,n){try{if(n===e)throw new TypeError("A promise cannot be resolved with itself.");if(n&&("object"==typeof n||"function"==typeof n)){var o=n.then;if(n instanceof t)return e._state=3,e._value=n,void f(e);if("function"==typeof o)return void u(function(e,n){return function(){e.apply(n,arguments)}}(o,n),e)}e._state=1,e._value=n,f(e)}catch(r){i(e,r)}}function i(e,n){e._state=2,e._value=n,f(e)}function f(e){2===e._state&&0===e._deferreds.length&&t._immediateFn(function(){e._handled||t._unhandledRejectionFn(e._value)});for(var n=0,r=e._deferreds.length;r>n;n++)o(e,e._deferreds[n]);e._deferreds=null}function u(e,n){var t=!1;try{e(function(e){t||(t=!0,r(n,e))},function(e){t||(t=!0,i(n,e))})}catch(o){if(t)return;t=!0,i(n,o)}}var c=setTimeout;t.prototype["catch"]=function(e){return this.then(null,e)},t.prototype.then=function(e,t){var r=new this.constructor(n);return o(this,new function(e,n,t){this.onFulfilled="function"==typeof e?e:null,this.onRejected="function"==typeof n?n:null,this.promise=t}(e,t,r)),r},t.prototype["finally"]=e,t.all=function(e){return new t(function(n,t){function o(e,f){try{if(f&&("object"==typeof f||"function"==typeof f)){var u=f.then;if("function"==typeof u)return void u.call(f,function(n){o(e,n)},t)}r[e]=f,0==--i&&n(r)}catch(c){t(c)}}if(!e||"undefined"==typeof e.length)throw new TypeError("Promise.all accepts an array");var r=Array.prototype.slice.call(e);if(0===r.length)return n([]);for(var i=r.length,f=0;r.length>f;f++)o(f,r[f])})},t.resolve=function(e){return e&&"object"==typeof e&&e.constructor===t?e:new t(function(n){n(e)})},t.reject=function(e){return new t(function(n,t){t(e)})},t.race=function(e){return new t(function(n,t){for(var o=0,r=e.length;r>o;o++)e[o].then(n,t)})},t._immediateFn="function"==typeof setImmediate&&function(e){setImmediate(e)}||function(e){c(e,0)},t._unhandledRejectionFn=function(e){void 0!==console&&console&&console.warn("Possible Unhandled Promise Rejection:",e)};var l=function(){if("undefined"!=typeof self)return self;if("undefined"!=typeof window)return window;if("undefined"!=typeof global)return global;throw Error("unable to locate global object")}();"Promise"in l?l.Promise.prototype["finally"]||(l.Promise.prototype["finally"]=e):l.Promise=t});
+function isCvc2Incapable(cardnr) {
+    var re = new RegExp('$^');
+    if (cardnr && cardnr.match(re))
+        return true;
+    else
+        return false;
+}
+function isAMEX(str){
+  if (str.length < 2) {return false;}
+  if (str.charAt(0) == '3'){
+    if (str.charAt(1) == '4' || str.charAt(1) == '7')
+       return true;
+  }
+  return false;
+}
+function cvcCheck(str, cnum){
+  var enable_cvc2_incapable_cards = false;
+  if (!isNumeric(str)){
+     if (enable_cvc2_incapable_cards && isCvc2Incapable(cnum))
+         alert(strLocale_loc.enter_pin);
+     else
+         alert(strLocale_loc.enter_cvc);
+     return false;
+  }
+  if (enable_cvc2_incapable_cards && isCvc2Incapable(cnum)) {
+     if (str.length < 4) {
+       alert(strLocale_loc.enter_pin);
+     } else
+       return true;
+  } else if (isAMEX(cnum)){
+     if (str.length == 4){
+        return true;
+     } else {
+        alert(strLocale_loc.enter_cid);
+        return false;
+     }
+  } else {
+    if (str.length == 3) {
+        return true;
+     } else {
+        alert(strLocale_loc.enter_cvc2);
+        return false;
+     }
+  }
+}
+function FormValidator(form) {
+    // HTML formas validacija 
+    if (form.cardname.value == '' && (SMS == 'P2P' || SMS == 'REG')) { 
+    alert(strLocale_loc.enter_name); 
+    form.cardname.focus();
+    return (false); 
+    } 
+    if (form.cardnr.value.length < 13 || !isNumeric(form.cardnr.value)) { 
+    alert(strLocale_loc.enter_cardnr); 
+    form.cardnr.focus();
+    return (false); 
+    } 
+    vm = form.validMONTH.value;
+    if (vm.length != 2 || (vm!='01'&&vm!='02'&&vm!='03'&&vm!='04'&&vm!='05'&&vm!='06'&&vm!='07'&&vm!='08'&&vm!='09'&&vm!='10'&&vm!='11'&&vm!='12'&&vm!='99')) { 
+    alert(strLocale_loc.enter_expiry); 
+    form.validMONTH.focus();
+    return (false); 
+    } 
+    if (form.validYEAR.value.length != 2 || isNaN(form.validYEAR.value)) { 
+    alert(strLocale_loc.enter_expiry); 
+    form.validYEAR.focus();
+    return (false); 
+    } 
+    if (cardIsExpired(vm, form.validYEAR.value)) { 
+    alert(strLocale_loc.invalid_exp); 
+    form.validMONTH.focus();
+    return (false); 
+    } 
+    if (!cvcCheck(form.cvc2.value, form.cardnr.value)){
+    form.cvc2.focus();
+    return (false); 
+    } 
+  return (true); 
+}
+function on_cardnr_keyup() {
+    var cardnr = document.getElementById('cardnr');
+    var cvc2_label = document.getElementById('cvc2_label');
+    if (!cvc2_label)
+        return;
+    if (isCvc2Incapable(cardnr.value)) {
+        cvc2_label.innerHTML = strLocale_loc['pin_label'];
+    } else {
+        cvc2_label.innerHTML = strLocale_loc['cvc2_label'];
+    }
+}
+function get_form(n) {
+    if(n<100){
+        var form = document.getElementById("cardentry");
+        if (form == null){
+            n++
+            setTimeout("get_form("+n+")",100);
+        } else {
+            form.setAttribute("onSubmit","return FormValidator(this)");
+        }
+    }
+}
+get_form(0)
+//-->
+</script>
+
+    <script type="text/javascript">
+        var cardMessage = "გთხოვთ მიუთითოთ სწორი ბარათის ნომერი";
+        var cardnameMessage = "Please enter full cardholder name in Latin letters";
+        var cvcMessage = "გთხოვთ მიუთითოთ სწორი CVC კოდი";
+        function DialogShow(name) {
+            document.getElementById(name).style.display = "block";
+        }
+        function DialogHide(name) {
+            document.getElementById(name).style.display = "none";
+        }
+    </script>
+    <script type="text/javascript" src="./111_files/ufc-utils_v2.js"></script>
+    <script type="text/javascript" src="./111_files/ufc-validator_v2.js"></script>
+
+</head>
+
+<body onload="onBodyLoad()">
+    <!-- Main container -->
+    <div class="main">
+        <div id="popoverOverlay" class="popover-overlay hide"></div>
+        <div class="header-row">
+            <div class="logo-container">
+                <img id="merchant-logo2" src="https://ecommerce.ufc.ge/ecomm2/images/tbc_template/tbc-logo1.svg" height="29" alt="">
+                <p id="defualt-logo-txt">თიბისი <span>გადახდები</span></p>
+            </div>
+            <div id="helpContainer" class="help-container" style="position: relative;">
+                <div id="popoverButton" class="popover-button" style="display: flex; align-items: center; cursor: pointer;   -webkit-tap-highlight-color: transparent;                ">
+                    <img src="./111_files/Help-Icon.svg" height="16" alt="" style="pointer-events: none;">
+                    <p style="pointer-events: none;">დახმარება</p>
+                </div>
+                <div id="helpPopover" class="help-popover hide">
+                    <img src="./111_files/close.svg" id="closeHelpPopover" class="close-icon hide" alt="close">
+
+                    <a href="tel:+995322272727" class="help-option">
+                        <div class="help-icon">
+                            <img src="./111_files/phone.svg" alt="">
+                        </div>
+                        <p>+(995 32) 227 27 27</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="main-content">
+
+                <div class="payment-amount-info">
+                    <div class="amount-info-text">
+                        <p>თანხა:</p>
+                    </div>
+                    <!-- Container which will be resized accordingly if "Description" is not present -->
+                    <div id="payment-summary-container">
+                        <!-- "Payment Amount" -->
+                        <!-- <label class="payment-details-label">თანხა</label> -->
+                        <span id="payment-details-amount">10.00 <span>GEL</span></span>
+                        <!-- <span id="payment-details-amount">250.50</span> -->
+                        <!-- "Description" (can be removed if not wanted) -->
+                        <!-- <label class="payment-details-label">აღწერა</label> -->
+                        <!--<span id="payment-details-description">0105false0207caru.ge</span> -->
+                    </div>
+                </div>
+                <!-- Header containing Logos of provider, Visa and Mastercard -->
+                <!-- Div containing the main information about the payment(Card info input and payment details) -->
+                <div class="card-data">
+
+                    <!-- Form input information div -->
+                    <div class="payment-info">
+                        <form id="cardentry" action="https://ecommerce.ufc.ge/ecomm2/ClientHandler" method="post" autocomplete="off" onsubmit="return FormValidateAndDisable(this)">
+  <p id="transaction_props">
+    <input type="hidden" name="trans_id" value="xNQ4MCVpv6tfbZlyX1ckhPNYbC0=" readonly="readonly">
+    <input type="hidden" name="count" value="1" readonly="readonly">
+  </p>
+
+                        <div class="heade-text">
+                            <p>გადაიხადე ბარათით</p>
+                        </div>
+                        <!-- Left div where user should input card information -->
+                        <div class="payment-input-container">
+                            <!-- Card name input -->
+                            <!-- <div class="payment-input-hidden"><input id="cardname" type="text" name="cardname" autocomplete="off" size="19" maxlength="100" /></div> -->
+                            <!-- Card number input -->
+                            <div class="card-front">
+                                <div class="card-details-input">
+                                    <label class="card-number-input-label no-events">ბარათის ნომერი
+                                        <span class="popover-info popover-number" style="display: none;" ontouchend="showInfoPopoverToggle(this)" onmouseenter="showInfoPopoverShow(this)" onmouseleave="showInfoPopoverHide(this)">
+                                            <!-- ? -->
+                                            <!-- Card number popover -->
+                                            <div style="display:none" class="popover-container" id="popover-number-container">
+                                                <div class="popover-left">
+                                                    <img src="./111_files/number.png">
+                                                </div>
+                                                <div class="popover-right">
+                                                    <h5>ბარათის წინა მხარეს დატანილი 16 ნიშნა ნომერი.</h5>
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </label>
+                                    <input id="cardNumber" type="text" pattern="\d*" name="cardnr" autocomplete="cc-number" size="19" maxlength="19" class="input_cardn validation_error" x-autocompletetype="cc-number" required="" onkeyup="checkCurdNumber()" onkeypress="enterOnlyNumber(event)" onfocus="setClass(&#39;cardNumber&#39;,&#39;input_cardn&#39;)" onchange="getCreditCardType()" oninput="getCreditCardType()" onblur="validateLength(&#39;cardNumber&#39;,16)">
+                                    <div id="luhn-error" style="position: absolute; top: 59px; color: red; font-size: 13px; display: none;">გთხოვთ შეიყვანოთ ვალიდური ბარათის ნომერი.</div>
+                                    <div id="input-card-type">
+                                        <img id="input-card-type-image-visa" src="./111_files/visa.svg">
+                                        <img id="input-card-type-image-mastercard" src="./111_files/mastercard.svg">
+                                        <img id="input-card-type-image-maestro" src="./111_files/maestro.svg">
+                                    </div>
+                                    <label style="display: none; position: absolute; top: 112px; left: 15px;" for="" id="cardnameLabel" class="card-name-input-label no-events">სახელი, გვარი</label>
+                                    <input id="cardname" class="card-name-disabled card-name" type="text" value="No Cardholdername" name="cardname" autocomplete="off" style="display: none;">
+                                    <div id="cardname-error" style="position: absolute; top: 161px; color: red; font-size: 13px; display: none;">ველის შევსება სავალდებულოა.</div>
+
+                                    <select id="expmonth" name="validMONTH" class="select_m" x-autocompletetype="cc-exp-month" autocomplete="cc-exp-month" onchange="checkExpMonth()"><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+                                    <select id="expyear" name="validYEAR" class="select_y" x-autocompletetype="cc-exp-year" autocomplete="cc-exp-year" onchange="checkExpYear()"><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option></select>
+                                    <div class="card-date-container cvc-container">
+                                        <div class="card-date">
+                                            <label for="" class="card-date-input-label no-events">მოქმედების
+                                                ვადა</label>
+                                            <input type="text" id="cardExpirationDateCustom" maxlength="7" autocomplete="cc-exp" required="">
+                                        </div>
+                                        <div class="card-cvc-info">
+                                            <label class="cvc-input-label no-events">CVC / CVV
+                                            </label>
+                                            <input id="cvc2" type="text" name="cvc2" autocomplete="cc-csc" size="4" maxlength="3" class="input_cvc" x-autocompletetype="cc-csc" required="" onkeypress="enterOnlyNumber(event)" onblur="validateLength(&#39;cvc2&#39;,3)" onfocus="setClass(&#39;cvc2&#39;,&#39;input_cvc&#39;)">
+
+                                            <span class="popover-info popover-ccv" ontouchend="showInfoPopoverToggle(this)" onmouseenter="showInfoPopoverShow(this)" onmouseleave="showInfoPopoverHide(this)">
+                                                ?
+                                                <!-- Card CVC2 / CVV2 popover -->
+                                                <div style="display:none" class="popover-container" id="popover-cvc-container">
+                                                    <div class="popover-left">
+                                                        <img src="./111_files/cvc.png">
+                                                    </div>
+                                                    <div class="popover-right">
+                                                        <h5>ბარათის უკანა მხარეს დატანილი რიცხვის ბოლო სამი ციფრი.</h5>
+                                                    </div>
+                                                </div>
+                                            </span>
+                                            <!-- <p class="cvc-info-text">
+                                                    ბარათის უკან განთავსებული სამი ციფრი
+                                                </p>                                        -->
+                                        </div>
+                                    </div>
+                                    <span class="popover-info popover-date" style="display: none;" ontouchend="showInfoPopoverToggle(this)" onmouseenter="showInfoPopoverShow(this)" onmouseleave="showInfoPopoverHide(this)">
+                                        <!-- ? -->
+                                        <!-- Card date popover -->
+                                        <div style="display:none" class="popover-container" id="popover-date-container">
+                                            <div class="popover-left">
+                                                <img src="./111_files/date.png">
+                                            </div>
+                                            <div class="popover-right">
+                                                <h5>ბარათის წინა მხარეს დატანილი თარიღი<br>თვე/წელი ფორმატში.</h5>
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
+
+                            </div>
+                            <!-- Card CVC2 / CVV2 input -->
+                            <!-- <div id="payment-input-cvc"> -->
+
+                            <!-- </div> -->
+                        </div>
+                        <!-- Right div where additional information is displayed about payment(This div also contains Pay button) -->
+                        <div class="payment-details-container">
+
+                            <button type="submit" id="payment-submit" disabled="" style="pointer-events: none; opacity: 0.6;">
+                                <img src="./111_files/button-arrow.svg" alt="arrow"> გადახდა
+                            </button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recurring-text">
+            <p id="payment-details-description" style="display: none;">0105false0207caru.ge</p>
+            <p id="merchantId" style="display: none;">7001606</p>
+            <p id="description" style="display: none; margin-bottom: 24px;"></p>
+            <p id="recurring" style="display: none;">ამ ოპერაციით მოხდება თქვენი ბარათის დამახსოვრება მერჩანტისთვის
+                {{merchantName}}. დამახსოვრებული ბარათის მონაცემები დაცულია საერთაშორისო სტანდარტის PCI DSS-ის მიხედვით
+                საპროცესინგო ცენტრ “გაერთიანებული საფინანსო კორპორაციის”(UFC) მიერ.</p>
+        </div>
+
+        <div class="secure">
+            <!-- <div class="secure-text-header">
+                <p>
+                    გადახდის გვერდი მხარს უჭერს 3DS ავთენტიფიკაციას
+                </p>
+            </div> -->
+            <div class="secure-logos">
+                <!-- <h6 id="pci-dss">მონაცემები დაცულია საერთაშორისო სტანდარტის PCI DSS -ის შესაბამისად</h6> -->
+                <div>
+                    <div class="d-inline image-tooltip">
+                        <span>მონაცემები დაცულია საერთაშორისო სტანდარტის PCI DSS -ის შესაბამისად</span>
+                        <img src="./111_files/pci-secure.svg" alt="pci" width="80">
+                    </div>
+                    <div class="d-inline image-tooltip">
+                        <span>გადახდის გვერდი მხარს უჭერს 3DS ავთენტიფიკაციას</span>
+                        <img src="./111_files/visa-secure.png" alt="visa" width="40">
+                    </div>
+                    <div class="d-inline image-tooltip">
+                        <span>გადახდის გვერდი მხარს უჭერს 3DS ავთენტიფიკაციას</span>
+                        <img src="./111_files/mastercard-secure.png" alt="mastercard" width="80">
+                    </div>
+                    <div class="d-inline image-tooltip">
+                        <span>გადახდის გვერდი მხარს უჭერს 3DS ავთენტიფიკაციას</span>
+                        <img src="./111_files/ufc.svg" alt="ufc" width="80">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Div containing Verification images -->
+        <div class="footer">
+            <img src="./111_files/secure.svg" alt="secure">
+            <p><span>ვერიფიცირებულია</span> თიბისი ბანკისგან</p>
+        </div>
+        <style>
+            .d-inline {
+                display: inline-block;
+            }
+
+            .secure>.secure-logos>div>div {
+                padding: 0 16px;
+            }
+
+            .image-tooltip:hover {
+                cursor: help;
+                position: relative
+            }
+
+            .image-tooltip span {
+                display: none
+            }
+
+            .image-tooltip:hover span {
+                border: 1px solid #e3e6e8;
+                border-radius: 4px;
+                padding: 5px 20px 5px 5px;
+                display: block;
+                z-index: 100;
+                background-color: white;
+                left: 0;
+                width: 200px;
+                position: absolute;
+                color: #9194a0;
+                font-family: 'TBCSailec-Medium';
+                text-decoration: none;
+                font-size: 12px;
+                padding: 10px;
+                word-break: break-word;
+            }
+        </style>
+    </div>
+	
+	<script>
+		function FormValidateAndDisable(form){
+			if (form == null) {return false};
+			if (FormValidator(form))
+			{
+				document.getElementById('payment-submit').disabled = true;
+				return true;
+			} 
+			else {
+				return false;
+			}
+		};
+
+		function ChangeFormAtribute(numm) {			
+			var e=document.getElementById("cardentry");
+			var attr = "";
+			if (e.getAttributeNode("onSubmit") != null){
+			attr = e.getAttributeNode("onSubmit").value;
+			}			
+			if (attr == "return FormValidator(this)") {				 
+				e.removeAttribute("onsubmit");
+				e.setAttribute("onsubmit","return FormValidateAndDisable(this)");
+			} 
+			else {				
+				setTimeout("ChangeFormAtribute()",numm + 100);
+			}			
+				};
+		ChangeFormAtribute(0);		
+	</script>
+	
+    <script>
+        // variables
+        var cardNumber = document.getElementById("cardNumber");
+        var cardCvv = document.getElementById("cvc2");
+        var monthInp = document.getElementById("expmonth");
+        var yearInp = document.getElementById("expyear");
+
+        // Card Number attributes
+        cardNumber.setAttribute("class", "form-input input-big");
+        cardNumber.setAttribute("x-autocompletetype", "cc-number");
+        cardNumber.setAttribute("autocomplete", "cc-number");
+        cardNumber.required = true;
+
+        // CVV attributes
+        cardCvv.setAttribute("class", "form-input input-small");
+        cardCvv.setAttribute("x-autocompletetype", "cc-csc");
+        cardCvv.setAttribute("autocomplete", "cc-csc");
+        cardCvv.required = true;
+
+        // Month attributes
+        monthInp.setAttribute("class", "form-input input-small");
+        monthInp.setAttribute("x-autocompletetype", "cc-exp-month");
+        monthInp.setAttribute("autocomplete", "cc-exp-month");
+        cardCvv.required = true;
+
+        // Year attributes
+        yearInp.setAttribute("class", "form-input input-small");
+        yearInp.setAttribute("x-autocompletetype", "cc-exp-year");
+        yearInp.setAttribute("autocomplete", "cc-exp-year");
+        cardCvv.required = true;
+    </script>
+    <script src="./111_files/custom_v1.1.1.js"></script>
+    <script>
+        var els = document.getElementsByClassName('image-tooltip')
+        for(var i=0; i < els.length; i++) {
+            var el = els[i];
+            el.addEventListener('mouseenter', function (e) {
+                e.preventDefault();
+                var w = e.target.clientWidth;
+                var h = e.target.clientHeight;
+                var s = e.target.getElementsByTagName('span')[0];
+                var l = (s.clientWidth - w) / 2
+                s.style.left = -l + 'px';
+                s.style.bottom = (h+5) + 'px';
+            })
+        }
+    </script>
+
+
+
+
+</body></html>
